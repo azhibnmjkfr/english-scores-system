@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remedial PTS Scores - MTsT Daarut Tahfizh Al-Ikhlas</title>
+    <meta name="description" content="Remedial PTS Scores Analysis - English Language">
+    <meta name="author" content="Ahmad Zaman Huri, S.Pd.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Color Palette */
+            --primary: #234626; /* Hijau sekolah */
+            --primary-dark: #1A351D;
+            --accent-gold: #D4AF37;
+            --neutral-white: #FFFFFF;
+            --neutral-light: #F9FAFB;
+            --neutral-gray: #E5E7EB;
+            --neutral-dark: #374151;
+            --success: #16A34A; /* Lulus sempurna ≥80 */
+            --warning: #F59E0B; /* Lulus, perlu peningkatan 75-79 */
+            --danger: #DC2626; /* Tidak lulus <75 */
+            --neutral: #4B5563; /* Belum input */
+            --text-dark: #111827; /* Teks kontras untuk kuning */
+            --border-success: #14532D; /* Border untuk hijau */
+            --border-warning: #9A3412; /* Border untuk kuning */
+            --border-danger: #991B1B; /* Border untuk merah */
+            --border-neutral: #374151; /* Border untuk abu-abu */
+            --border-class: #0D1F11; /* Border untuk kelas */
+            
+            /* Typography */
+            --font-family: 'Inter', system-ui, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem; /* Untuk efek balon */
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-badge: 0 1px 2px rgba(0, 0, 0, 0.1); /* Shadow untuk badge */
+            
+            /* Transitions */
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--neutral-light);
+            color: var(--neutral-dark);
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-2) var(--space-4);
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary);
+            color: var(--neutral-white);
+            padding: var(--space-4);
+            text-align: center;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .header .back-nav {
+            text-align: left;
+            margin-bottom: var(--space-3);
+        }
+
+        .header .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--neutral-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-sm);
+            background: var(--primary-dark);
+        }
+
+        .header .back-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary);
+        }
+
+        .header .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .header .title i {
+            font-size: var(--font-size-xl);
+        }
+
+        .header h1 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header .info {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: var(--space-2) auto 0;
+        }
+
+        .header .info span {
+            display: block;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: var(--space-4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .stat-card {
+            background: var(--neutral-white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-white);
+            font-size: var(--font-size-base);
+        }
+
+        .stat-content .stat-number {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-content .stat-label {
+            font-size: var(--font-size-xs);
+            color: var(--neutral-dark);
+        }
+
+        /* Filters Section */
+        .filters-section {
+            padding: var(--space-3);
+            background: var(--neutral-white);
+            border-radius: var(--radius-md);
+            margin: var(--space-3) 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--space-2);
+            align-items: center;
+        }
+
+        .filter-select, .filter-btn {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--neutral-gray);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            background: var(--neutral-white);
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .filter-btn {
+            background: var(--primary);
+            color: var(--neutral-white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Data Table */
+        .data-section {
+            padding: var(--space-2);
+            overflow-x: auto;
+        }
+
+        .table-container {
+            background: var(--neutral-white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        thead {
+            background: var(--primary);
+            color: var(--neutral-white);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        th {
+            padding: var(--space-3);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            text-align: left;
+        }
+
+        td {
+            padding: var(--space-2) var(--space-3);
+            border-bottom: 1px solid var(--neutral-gray);
+            font-size: var(--font-size-sm);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Badges */
+        .class-badge, .grade-badge, .status-badge {
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            display: inline-block;
+            text-align: center;
+            box-shadow: var(--shadow-badge);
+        }
+
+        .class-badge {
+            background: var(--primary-dark);
+            color: var(--neutral-white);
+            min-width: 50px;
+            border: 1px solid var(--border-class);
+        }
+
+        .grade-badge {
+            min-width: 40px;
+            border: 1px solid;
+        }
+
+        .grade-passed { 
+            background: var(--success); 
+            color: var(--neutral-white); 
+            border-color: var(--border-success);
+        }
+        .grade-warning { 
+            background: var(--warning); 
+            color: var(--text-dark); 
+            border-color: var(--border-warning);
+        }
+        .grade-failed { 
+            background: var(--danger); 
+            color: var(--neutral-white); 
+            border-color: var(--border-danger);
+        }
+
+        .status-badge {
+            min-width: 80px;
+            border: 1px solid;
+        }
+
+        .status-passed { 
+            background: var(--success); 
+            color: var(--neutral-white); 
+            border-color: var(--border-success);
+        }
+        .status-remedial { 
+            background: var(--warning); 
+            color: var(--text-dark); 
+            border-color: var(--border-warning);
+        }
+        .status-belum-input { 
+            background: var(--neutral); 
+            color: var(--neutral-white); 
+            border-color: var(--border-neutral);
+        }
+
+        .loading-cell {
+            text-align: center;
+            padding: var(--space-6);
+            color: var(--neutral-dark);
+        }
+
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--neutral-gray);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--space-2);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-cell {
+            text-align: center;
+            padding: var(--space-6);
+            color: var(--danger);
+        }
+
+        .error-cell i {
+            font-size: var(--font-size-base);
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: var(--space-6);
+            color: var(--neutral-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--neutral-white);
+            text-align: center;
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+            border-radius: var(--radius-md);
+        }
+
+        .footer .brand {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+        }
+
+        .footer .info {
+            font-size: var(--font-size-xs);
+            opacity: 0.8;
+            margin-top: var(--space-1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-2);
+            }
+            .filters-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: var(--font-size-xl);
+            }
+            .header .info {
+                font-size: var(--font-size-xs);
+            }
+            .stat-card {
+                padding: var(--space-2);
+            }
+            .stat-icon {
+                width: 32px;
+                height: 32px;
+                font-size: var(--font-size-sm);
+            }
+            .stat-content .stat-number {
+                font-size: var(--font-size-base);
+            }
+            th, td {
+                padding: var(--space-2);
+                font-size: var(--font-size-xs);
+            }
+            .class-badge, .grade-badge, .status-badge {
+                padding: var(--space-1) var(--space-2);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header .back-btn {
+                padding: var(--space-1) var(--space-2);
+                font-size: var(--font-size-xs);
+            }
+            .header .title i {
+                font-size: var(--font-size-base);
+            }
+            .header h1 {
+                font-size: var(--font-size-lg);
+            }
+        }
+
+        /* Class-specific colors */
+        tr.kelas-8A { background: rgba(35, 70, 38, 0.05); }
+        tr.kelas-8B { background: rgba(212, 175, 55, 0.05); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="back-nav">
+                <a href="../index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Dashboard</span>
+                </a>
+            </div>
+            <div class="title">
+                <i class="fas fa-book"></i>
+                <h1>Remedial PTS Scores</h1>
+            </div>
+            <div class="info">
+                <span><strong>Guru:</strong> Ahmad Zaman Huri, S.Pd.</span>
+                <span><strong>Sekolah:</strong> MTsT Daarut Tahfizh Al-Ikhlas</span>
+                <span><strong>Pelajaran:</strong> Bahasa Inggris</span>
+            </div>
+        </header>
+
+        <!-- Statistics Cards -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalStudents">-</div>
+                        <div class="stat-label">Total Students</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="averageScore">-</div>
+                        <div class="stat-label">Average Score</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="highestScore">-</div>
+                        <div class="stat-label">Highest Score</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="lastUpdate">-</div>
+                        <div class="stat-label">Last Update</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="filters-section">
+            <div class="filters-grid">
+                <select id="filterClass" class="filter-select">
+                    <option value="">Semua Kelas</option>
+                </select>
+                <select id="filterRemedial" class="filter-select">
+                    <option value="">Semua Status Remedial</option>
+                    <option value="remedial">Siswa Remedial</option>
+                    <option value="non-remedial">Non-Remedial</option>
+                </select>
+                <select id="filterSort" class="filter-select">
+                    <option value="">Urutkan Nilai Hasil Remedial</option>
+                    <option value="desc">Tertinggi ke Terendah</option>
+                    <option value="asc">Terendah ke Tertinggi</option>
+                </select>
+                <button id="resetFilters" class="filter-btn">
+                    <i class="fas fa-redo"></i>
+                    Reset
+                </button>
+            </div>
+        </section>
+
+        <!-- Data Table -->
+        <section class="data-section">
+            <div class="table-container">
+                <table id="nilaiTable">
+                    <thead>
+                        <tr>
+                            <th>Student Code</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Waktu Remedial</th>
+                            <th>Nilai Sebelum</th>
+                            <th>Materi Remedial</th>
+                            <th>Bentuk Remedial</th>
+                            <th>Nilai Hasil</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr><td colspan="9" class="loading-cell">
+                            <div class="loading-spinner"></div>
+                            Memuat data...
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="brand">English Scores System</div>
+            <div class="info">Developed by Ahmad Zaman Huri, S.Pd. - MTsT Daarut Tahfizh Al-Ikhlas</div>
+        </footer>
+    </div>
+
+    <script>
+        const SHEET_URL = "https://docs.google.com/spreadsheets/d/1N-docAeezSqzkQcTk8mcPm-qMf-EisMELs_N35zAaT8/gviz/tq?tqx=out:csv&sheet=%F0%9F%8E%AF%20remedial_pts";
+        const filterClass = document.getElementById("filterClass");
+        const filterRemedial = document.getElementById("filterRemedial");
+        const filterSort = document.getElementById("filterSort");
+        const resetBtn = document.getElementById("resetFilters");
+        const tableBody = document.getElementById("tableBody");
+        const totalStudents = document.getElementById("totalStudents");
+        const averageScore = document.getElementById("averageScore");
+        const highestScore = document.getElementById("highestScore");
+        const lastUpdate = document.getElementById("lastUpdate");
+        let allData = [];
+
+        function parseCSV(csvText) {
+            const rows = [];
+            let currentRow = [];
+            let inQuotes = false;
+            let currentValue = "";
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+                const nextChar = csvText[i + 1];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    currentRow.push(currentValue.trim());
+                    currentValue = "";
+                } else if (char === '\n' && !inQuotes) {
+                    currentRow.push(currentValue.trim());
+                    rows.push(currentRow);
+                    currentRow = [];
+                    currentValue = "";
+                } else if (char === '\r' && nextChar === '\n' && !inQuotes) {
+                    currentRow.push(currentValue.trim());
+                    rows.push(currentRow);
+                    currentRow = [];
+                    currentValue = "";
+                    i++;
+                } else {
+                    currentValue += char;
+                }
+            }
+            if (currentValue.trim() !== "" || currentRow.length > 0) {
+                currentRow.push(currentValue.trim());
+                rows.push(currentRow);
+            }
+            return rows;
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch(SHEET_URL);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                const csvText = await response.text();
+                const rows = parseCSV(csvText);
+                if (rows.length < 2) throw new Error("No data rows found");
+
+                allData = rows.slice(1)
+                    .filter(r => r.length >= 9 && r[0] && r[0].trim() !== "")
+                    .map(row => ({
+                        studentCode: row[0].replace(/^"|"$/g, ""),
+                        studentName: row[1].replace(/^"|"$/g, ""),
+                        class: row[2].replace(/^"|"$/g, ""),
+                        waktuRemedial: row[3].replace(/^"|"$/g, ""),
+                        nilaiSebelum: row[4].replace(/^"|"$/g, ""),
+                        materiRemedial: row[5].replace(/^"|"$/g, ""),
+                        bentukRemedial: row[6].replace(/^"|"$/g, ""),
+                        nilaiHasil: row[7].replace(/^"|"$/g, ""),
+                        keterangan: row[8].replace(/^"|"$/g, "")
+                    }));
+
+                renderTable(allData);
+                fillDropdowns(allData);
+                updateStatistics(allData);
+                updateLastUpdate();
+            } catch (e) {
+                console.error("Error loading data:", e);
+                tableBody.innerHTML = `<tr><td colspan="9" class="error-cell"><i class="fas fa-exclamation-circle"></i>Gagal memuat data: ${e.message}. Pastikan sheet dipublikasikan.</td></tr>`;
+            }
+        }
+
+        function getGradeClass(score) {
+            const numScore = parseFloat(score);
+            if (isNaN(numScore)) return "";
+            if (numScore >= 80) return "grade-passed";
+            if (numScore >= 75) return "grade-warning";
+            return "grade-failed";
+        }
+
+        function getStatusClass(keterangan) {
+            const k = keterangan.toLowerCase();
+            if (k.includes("lulus")) return "status-passed";
+            if (k.includes("perlu remedial")) return "status-remedial";
+            if (k.includes("belum input")) return "status-belum-input";
+            return "";
+        }
+
+        function renderTable(data) {
+            tableBody.innerHTML = "";
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="9" class="no-data">Tidak ada data</td></tr>`;
+                return;
+            }
+            data.forEach(item => {
+                const tr = document.createElement("tr");
+                tr.classList.add(`kelas-${item.class.replace(/\W/g, '')}`);
+                tr.innerHTML = `
+                    <td>${item.studentCode || '-'}</td>
+                    <td>${item.studentName || '-'}</td>
+                    <td><span class="class-badge">${item.class || '-'}</span></td>
+                    <td>${item.waktuRemedial || '-'}</td>
+                    <td><span class="grade-badge ${getGradeClass(item.nilaiSebelum)}">${item.nilaiSebelum || '-'}</span></td>
+                    <td>${item.materiRemedial || '-'}</td>
+                    <td>${item.bentukRemedial || '-'}</td>
+                    <td><span class="grade-badge ${getGradeClass(item.nilaiHasil)}">${item.nilaiHasil || '-'}</span></td>
+                    <td><span class="status-badge ${getStatusClass(item.keterangan)}">${item.keterangan || '-'}</span></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function fillDropdowns(data) {
+            const classSet = new Set(data.map(item => item.class).filter(c => c));
+            filterClass.innerHTML = '<option value="">Semua Kelas</option>';
+            Array.from(classSet).sort().forEach(item => {
+                const option = document.createElement("option");
+                option.value = item;
+                option.textContent = item;
+                filterClass.appendChild(option);
+            });
+        }
+
+        function updateStatistics(data) {
+            const scores = data
+                .map(item => parseFloat(item.nilaiHasil))
+                .filter(score => !isNaN(score) && score > 0);
+            totalStudents.textContent = data.length;
+            averageScore.textContent = scores.length > 0 ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) : '0.0';
+            highestScore.textContent = scores.length > 0 ? Math.max(...scores).toFixed(1) : '0.0';
+        }
+
+        function updateLastUpdate() {
+            const now = new Date();
+            lastUpdate.textContent = now.toLocaleString('id-ID', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function filterTable() {
+            let filtered = [...allData];
+            
+            // Filter Kelas
+            const classVal = filterClass.value.toLowerCase();
+            if (classVal) {
+                filtered = filtered.filter(item => item.class.toLowerCase() === classVal);
+            }
+
+            // Filter Remedial
+            const remedialVal = filterRemedial.value.toLowerCase();
+            if (remedialVal === "remedial") {
+                filtered = filtered.filter(item => 
+                    (item.materiRemedial && item.materiRemedial !== '-') ||
+                    (item.bentukRemedial && item.bentukRemedial !== '-') ||
+                    item.keterangan.toLowerCase().includes("perlu remedial")
+                );
+            } else if (remedialVal === "non-remedial") {
+                filtered = filtered.filter(item => 
+                    (!item.materiRemedial || item.materiRemedial === '-') &&
+                    (!item.bentukRemedial || item.bentukRemedial === '-') &&
+                    !item.keterangan.toLowerCase().includes("perlu remedial")
+                );
+            }
+
+            // Sort Nilai Hasil Remedial
+            const sortVal = filterSort.value;
+            if (sortVal) {
+                filtered.sort((a, b) => {
+                    const scoreA = parseFloat(a.nilaiHasil) || 0;
+                    const scoreB = parseFloat(b.nilaiHasil) || 0;
+                    return sortVal === "desc" ? scoreB - scoreA : scoreA - scoreB;
+                });
+            }
+
+            renderTable(filtered);
+            updateStatistics(filtered);
+        }
+
+        filterClass.addEventListener("change", filterTable);
+        filterRemedial.addEventListener("change", filterTable);
+        filterSort.addEventListener("change", filterTable);
+        resetBtn.addEventListener("click", () => {
+            filterClass.value = "";
+            filterRemedial.value = "";
+            filterSort.value = "";
+            renderTable(allData);
+            updateStatistics(allData);
+        });
+
+        loadData();
+    </script>
+</body>
+</html>

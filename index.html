@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESS - English Scores System</title>
+    <meta name="description" content="Sistem Analisis Nilai Bahasa Inggris - MTsT Daarut Tahfizh Al-Ikhlas">
+    <meta name="author" content="Ahmad Zaman Huri, S.Pd.">
+    <meta name="theme-color" content="#234626">
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #234626;
+            --primary-light: #2d5a2f;
+            --accent-gold: #D4AF37;
+            --gold-light: #e6c975;
+            --white: #FFFFFF;
+            --light: #F8FAFC;
+            --gray: #E2E8F0;
+            --text: #1E293B;
+            --radius: 1rem;
+            --shadow: 0 8px 25px rgba(35, 70, 38, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            /* Optimize rendering */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-gold);
+            /* Optimize compositing */
+            transform: translateZ(0);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            position: relative;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: no-preference) {
+            .logo i {
+                animation: shimmer 3s infinite linear;
+                background: linear-gradient(45deg, transparent, var(--gold-light), transparent);
+                background-size: 200% 100%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--accent-gold); }
+
+        .subtitle { font-weight: 500; opacity: 0.95; font-size: 1.1rem; }
+        .school { font-size: 0.875rem; opacity: 0.8; margin-top: 0.25rem; }
+
+        /* Main */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1rem;
+            background: linear-gradient(to bottom, var(--light), #e8f0e8);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #475569;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            /* Optimize for mobile */
+            will-change: transform;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(35, 70, 38, 0.08);
+            position: relative;
+            overflow: hidden;
+            /* Optimize animations */
+            will-change: transform, box-shadow;
+            transform: translateZ(0);
+        }
+
+        /* Reduced motion support for card animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .card {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.6s ease forwards;
+                animation-delay: calc(0.1s * var(--card-index));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card {
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Optimized hover effects */
+        @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+            .card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 30px rgba(35, 70, 38, 0.16);
+            }
+
+            .card:hover .icon {
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            .card::after {
+                content: 'English Scores System';
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 0.75rem;
+                color: var(--white);
+                background: var(--primary);
+                padding: 0.3rem 0.6rem;
+                border-radius: 0.3rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                transform: translateY(10px);
+            }
+
+            .card:hover::after {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: 'ESS';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            opacity: 0.5;
+            transform: rotate(45deg);
+            cursor: help;
+        }
+
+        .card.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .card.loading::before {
+            content: 'Loading...';
+            transform: none;
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .icon {
+            width: 70px; 
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+            box-shadow: 0 6px 15px rgba(35, 70, 38, 0.2);
+            transition: var(--transition);
+            /* Optimize animations */
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.875rem;
+            color: #64748B;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.6rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--accent-gold);
+            /* Optimize for touch */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        /* Optimized button hover effects */
+        @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+            .btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+                transition: var(--transition);
+            }
+
+            .btn:hover::before {
+                left: 100%;
+            }
+
+            .btn:hover {
+                background: linear-gradient(45deg, var(--primary-light), var(--primary));
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+                color: var(--accent-gold);
+            }
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .btn.loading::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .ripple {
+            position: absolute;
+            background: var(--accent-gold);
+            opacity: 0.3;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .btn i { font-size: 0.9rem; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--primary);
+            color: white;
+            font-size: 0.875rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover { text-decoration: underline; }
+
+        .footer a i {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid { 
+                grid-template-columns: 1fr; 
+                gap: 1rem;
+            }
+            .header { 
+                padding: 1.5rem 1rem; 
+            }
+            .logo h1 { 
+                font-size: 1.7rem; 
+            }
+            .hero h2 { 
+                font-size: 1.5rem; 
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            
+            /* Disable some animations on mobile for better performance */
+            .card:hover {
+                transform: none;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .card {
+                border: 2px solid var(--primary);
+            }
+            .btn {
+                border: 2px solid var(--accent-gold);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>ESS - <span>English Scores System</span></h1>
+        </div>
+        <div class="subtitle">Sistem Analisis Nilai Bahasa Inggris</div>
+        <div class="school">MTsT Daarut Tahfizh Al-Ikhlas</div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+        <section class="hero">
+            <h2>ESS Academic Dashboard</h2>
+            <p>A refined system for transparent monitoring of English proficiency and student progress.</p>
+        </section>
+
+        <div class="grid">
+            <div class="card" style="--card-index: 1;">
+                <div class="icon"><i class="fas fa-clipboard-check"></i></div>
+                <h3>PTS Scores</h3>
+                <p>Nilai Penilaian Tengah Semester</p>
+                <a href="pages/pts.html" class="btn">Buka PTS <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 2;">
+                <div class="icon"><i class="fas fa-redo"></i></div>
+                <h3>Remedial PTS</h3>
+                <p>Perbaikan nilai tengah semester</p>
+                <a href="pages/remedial-pts.html" class="btn">Buka Remedial <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 3;">
+                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                <h3>UAS Scores</h3>
+                <p>Nilai Ujian Akhir Semester</p>
+                <a href="pages/uas.html" class="btn">Buka UAS <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 4;">
+                <div class="icon"><i class="fas fa-sync-alt"></i></div>
+                <h3>Remedial UAS</h3>
+                <p>Perbaikan nilai akhir semester</p>
+                <a href="pages/remedial-uas.html" class="btn">Buka Remedial <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 5;">
+                <div class="icon"><i class="fas fa-brain"></i></div>
+                <h3>Knowledge</h3>
+                <p>Penilaian pemahaman materi</p>
+                <a href="pages/knowledge.html" class="btn">Buka Knowledge <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 6;">
+                <div class="icon"><i class="fas fa-hands-helping"></i></div>
+                <h3>Skills</h3>
+                <p>Keterampilan berbahasa Inggris</p>
+                <a href="pages/skills.html" class="btn">Buka Skills <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 7;">
+                <div class="icon"><i class="fas fa-heart"></i></div>
+                <h3>Attitude</h3>
+                <p>Sikap spiritual & sosial</p>
+                <a href="pages/attitude.html" class="btn">Buka Attitude <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card" style="--card-index: 8;">
+                <div class="icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Class Progress</h3>
+                <p>Rangkuman progres kelas</p>
+                <a href="pages/progress.html" class="btn">Buka Progress <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 <strong>ESS - English Scores System</strong></p>
+        <p>Designed by <a href="https://wa.me/+6282246077307"><i class="fab fa-whatsapp"></i> Ahmad Zaman Huri, S.Pd.</a></p>
+        <p><a href="https://www.instagram.com/mtst_daaruttahfizh"><i class="fab fa-instagram"></i> MTsT Daarut Tahfizh Al-Ikhlas</a></p>
+    </footer>
+
+    <script>
+        // Optimized navigation with loading states
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Ripple effect (only if user allows motion)
+                if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    const rect = button.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    button.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                }
+
+                // Loading state for better UX
+                const card = button.closest('.card');
+                card.classList.add('loading');
+                button.classList.add('loading');
+                
+                // Prevent multiple clicks
+                e.preventDefault();
+                const href = button.getAttribute('href');
+                
+                // Simulate loading delay (remove this in production)
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+
+        // Optimize performance by disabling animations when page is not visible
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.body.style.animationPlayState = 'paused';
+            } else {
+                document.body.style.animationPlayState = 'running';
+            }
+        });
+    </script>
+</body>
+</html>
