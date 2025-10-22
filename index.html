@@ -8,192 +8,82 @@
   <meta name="author" content="Ahmad Zaman Huri, S.Pd.">
   <meta name="theme-color" content="#234626">
 
-  <!-- Google Fonts: Inter -->
+  <!-- SEO & Share -->
+  <meta property="og:title" content="ESS - English Scores System">
+  <meta property="og:description" content="Sistem digital penilaian Bahasa Inggris berbasis web - MTsT Daarut Tahfizh Al-Ikhlas.">
+  <meta property="og:image" content="https://azhibnmjkfr.github.io/english-scores-system/assets/img/logo-ess.png">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root{
-      --primary:#234626;
-      --primary-light:#2d5a2f;
-      --accent-gold:#D4AF37;
-      --gold-light:#e6c975;
-      --white:#FFFFFF;
-      --light:#F8FAFC;
-      --text:#1E293B;
-      --radius:1rem;
-      --shadow:0 6px 18px rgba(35,70,38,.12);
-      --shadow-lg:0 10px 24px rgba(35,70,38,.16);
+      --primary:#234626;--primary-light:#2d5a2f;--accent-gold:#D4AF37;
+      --gold-light:#e6c975;--white:#fff;--light:#F8FAFC;--text:#1E293B;
+      --radius:1rem;--shadow:0 6px 18px rgba(35,70,38,.12);--shadow-lg:0 10px 24px rgba(35,70,38,.16);
       --ease:cubic-bezier(.2,.6,.2,1);
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:'Inter',sans-serif;
-      background:var(--light);
-      color:var(--text);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      min-height:100vh;
-    }
+    body{font-family:'Inter',sans-serif;background:var(--light);color:var(--text);line-height:1.6;min-height:100vh}
 
-    /* Header (tetap) */
-    .header{
-      background:var(--primary);
-      color:var(--white);
-      text-align:center;
-      padding:2rem 1rem;
-      border-bottom:4px solid var(--accent-gold);
-    }
-    .logo{
-      display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:.25rem
-    }
-    .logo i{
-      font-size:2rem;
-      color:var(--accent-gold);
-    }
-    @media (prefers-reduced-motion: no-preference){
-      .logo i{
-        background:linear-gradient(45deg, transparent, var(--gold-light), transparent);
-        background-size:200% 100%;
-        -webkit-background-clip:text;
-        background-clip:text;
-        color:transparent;
-        animation:shimmer 3s linear infinite;
-      }
-      @keyframes shimmer{
-        0%{background-position:-200% 0}
-        100%{background-position:200% 0}
-      }
+    /* Header */
+    .header{background:var(--primary);color:var(--white);text-align:center;padding:2rem 1rem;border-bottom:4px solid var(--accent-gold);}
+    .logo{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:.25rem}
+    .logo i{font-size:2rem;color:var(--accent-gold);}
+    @media (prefers-reduced-motion:no-preference){
+      .logo i{background:linear-gradient(45deg,transparent,var(--gold-light),transparent);
+        background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+        animation:shimmer 3s linear infinite}
+      @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
     }
     .logo h1{font-size:1.9rem;font-weight:700;letter-spacing:-.5px}
     .logo h1 span{color:var(--accent-gold)}
     .subtitle{font-weight:500;opacity:.95;font-size:1.05rem}
     .school{font-size:.875rem;opacity:.85;margin-top:.2rem}
 
-    /* Main (dilebarkan agar selaras halaman lain) */
-    .main{
-      max-width:1400px; /* dari 1200 -> 1400 untuk match pages lain */
-      margin:0 auto;
-      padding:2.25rem 1rem;
-      background:linear-gradient(to bottom,var(--light),#e8f0e8);
-    }
+    /* Main */
+    .main{max-width:1400px;margin:0 auto;padding:2.25rem 1rem;background:linear-gradient(to bottom,var(--light),#e8f0e8)}
     .hero{text-align:center;margin-bottom:2rem}
-    .hero h2{
-      font-size:clamp(1.35rem, 2.2vw, 1.6rem);
-      color:var(--primary);font-weight:600;margin-bottom:.35rem
-    }
+    .hero h2{font-size:clamp(1.35rem,2.2vw,1.6rem);color:var(--primary);font-weight:600;margin-bottom:.35rem}
     .hero p{color:#475569;max-width:720px;margin:0 auto;font-size:1rem}
-
-    /* Grid (lebih stabil di laptop kecil & rapi di desktop besar) */
-    .grid{
-      display:grid;
-      gap:clamp(.9rem, 1.8vw, 1.25rem); /* responsif */
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); /* dari 260 -> 300 */
-    }
-
-    .card{
-      position:relative;
-      background:var(--white);
-      border-radius:var(--radius);
-      padding:1.25rem; /* dari 1.5 -> 1.25, lebih kompak */
-      text-align:center;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(35,70,38,.08);
-      transition:transform .15s var(--ease), box-shadow .15s var(--ease);
-      cursor:pointer; /* seluruh kartu klik */
-    }
-    .card:focus-within,
-    .card:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px}
-    @media (hover:hover){
-      .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-    }
-
-    .icon{
-      width:60px;height:60px; /* dari 66 -> 60 agar proporsional dg padding baru */
-      margin:0 auto 1rem;
-      display:flex;align-items:center;justify-content:center;
-      border-radius:1rem;
-      background:linear-gradient(135deg,var(--primary),var(--primary-light));
-      color:#fff;font-size:1.45rem;
-      box-shadow:0 6px 15px rgba(35,70,38,.18);
-      flex-shrink:0;
-    }
-
-    .card h3{
-      font-size:clamp(1.05rem, 1.6vw, 1.2rem); /* tipografi responsif */
-      color:var(--primary);margin-bottom:.45rem;font-weight:600
-    }
+    .grid{display:grid;gap:clamp(.9rem,1.8vw,1.25rem);grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    .card{position:relative;background:var(--white);border-radius:var(--radius);padding:1.25rem;text-align:center;
+      box-shadow:var(--shadow);border:1px solid rgba(35,70,38,.08);transition:transform .15s var(--ease),box-shadow .15s var(--ease),outline .15s var(--ease);
+      cursor:pointer}
+    @media(hover:hover){.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);outline:1.5px solid rgba(212,175,55,.45)}}
+    .icon{width:60px;height:60px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;
+      border-radius:1rem;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:#fff;font-size:1.45rem;box-shadow:0 6px 15px rgba(35,70,38,.18)}
+    .card h3{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--primary);margin-bottom:.45rem;font-weight:600}
     .card p{font-size:.92rem;color:#64748B;margin-bottom:1rem}
-
-    .btn{
-      display:inline-flex;align-items:center;gap:.55rem;
-      background:linear-gradient(45deg,var(--primary),var(--primary-light));
-      color:#fff;padding:.7rem 1.15rem;border-radius:.6rem;
-      font-size:.9rem;font-weight:600;text-decoration:none;
-      border:1px solid var(--accent-gold);
-      transition:transform .12s var(--ease), box-shadow .12s var(--ease), background .12s var(--ease), color .12s var(--ease);
-      -webkit-tap-highlight-color:transparent;
-    }
-    @media (hover:hover){
-      .btn:hover{
-        background:linear-gradient(45deg, var(--primary-light), var(--primary));
-        color:var(--accent-gold);
-        box-shadow:0 4px 10px rgba(212,175,55,.22);
-        transform:translateY(-1px);
-        text-shadow:0 0 1px rgba(0,0,0,.2); /* jaga kontras saat teks gold */
-      }
-      .btn:hover i{transform:translateX(2px)}
-    }
+    .btn{display:inline-flex;align-items:center;gap:.55rem;background:linear-gradient(45deg,var(--primary),var(--primary-light));
+      color:#fff;padding:.7rem 1.15rem;border-radius:.6rem;font-size:.9rem;font-weight:600;text-decoration:none;
+      border:1px solid var(--accent-gold);transition:transform .12s var(--ease),box-shadow .12s var(--ease),background .12s var(--ease),color .12s var(--ease)}
+    @media(hover:hover){.btn:hover{background:linear-gradient(45deg,var(--primary-light),var(--primary));color:var(--accent-gold);
+      box-shadow:0 4px 10px rgba(212,175,55,.22);transform:translateY(-1px)}.btn:hover i{transform:translateX(2px)}}
     .btn i{font-size:.9rem;transition:transform .12s var(--ease)}
-    .btn:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px}
-    .btn:active{transform:translateY(0)}
+    .card::before{content:'ESS';position:absolute;top:10px;right:10px;font-size:.7rem;font-weight:600;color:var(--accent-gold);opacity:.6;transform:rotate(45deg);pointer-events:none}
 
-    .card::before{
-      content:'ESS';
-      position:absolute;top:10px;right:10px;
-      font-size:.7rem;font-weight:600;color:var(--accent-gold);opacity:.6;
-      transform:rotate(45deg);
-      pointer-events:none;
-    }
+    /* Footer */
+    .footer{text-align:center;padding:1.25rem 1rem;background:var(--primary);color:#fff;font-size:.9rem;line-height:1.4}
+    .footer p{margin:.2rem 0}
+    .footer a{color:var(--accent-gold);text-decoration:none;font-weight:600;transition:color .2s ease}
+    .footer a:hover{text-decoration:underline;color:var(--gold-light)}
+    .footer small{display:block;opacity:.7;font-size:.8rem;margin-top:.25rem}
 
-    /* Footer (tetap) */
-    .footer{
-      text-align:center;
-      padding:1.25rem 1rem;
-      background:var(--primary);
-      color:#fff;
-      font-size:.9rem;
-      line-height:1.4;
+    /* WhatsApp Button */
+    .wa-btn{
+      position:fixed;bottom:20px;right:20px;z-index:9999;
+      background:#25D366;color:#fff;width:52px;height:52px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.7rem;box-shadow:0 6px 16px rgba(0,0,0,.25);
+      transition:transform .2s var(--ease),box-shadow .2s var(--ease);
     }
-    .footer p{margin:.2rem 0;}
-    .footer a{
-      color:var(--accent-gold);
-      text-decoration:none;
-      font-weight:600;
-      transition:color .2s ease;
-    }
-    .footer a:hover{
-      text-decoration:underline;
-      color:var(--gold-light);
-    }
+    .wa-btn:hover{transform:scale(1.05);box-shadow:0 8px 18px rgba(0,0,0,.3);color:#fff}
 
-    @media (max-width:768px){
-      .header{padding:1.6rem 1rem}
-      .logo h1{font-size:1.6rem}
-      .card{padding:1rem} /* lebih ringkas di mobile */
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .card, .btn{transition:none}
-      .logo i{animation:none;color:var(--accent-gold);background:none}
-    }
-
-    @media (prefers-contrast: high){
-      .card{border:2px solid var(--primary)}
-      .btn{border:2px solid var(--accent-gold)}
-    }
+    @media(max-width:768px){.header{padding:1.6rem 1rem}.logo h1{font-size:1.6rem}.card{padding:1rem}}
   </style>
 </head>
 <body>
@@ -203,7 +93,7 @@
       <i class="fas fa-graduation-cap"></i>
       <h1>ESS - <span>English Scores System</span></h1>
     </div>
-    <div class="subtitle"><em>Empowering English Assessment in the Digital Era</em></div>
+    <div class="subtitle"><em>A modern paperless system empowering transparent English assessment</em></div>
     <div class="school">MTsT Daarut Tahfizh Al-Ikhlas</div>
   </header>
 
@@ -211,64 +101,49 @@
   <main class="main">
     <section class="hero">
       <h2>ESS Academic Dashboard</h2>
-      <p>A paperless and transparent system for the evaluation and reporting of students’ English performance.</p>
+      <p>A digital platform to simplify English assessment and visualize student progress.</p>
     </section>
 
     <div class="grid">
-      <div class="card" data-link="pages/pts/index.html" tabindex="0" role="link" aria-label="Buka PTS Scores">
+      <div class="card" data-link="pages/pts/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-clipboard-check"></i></div>
-        <h3>PTS Scores</h3>
-        <p>Nilai Penilaian Tengah Semester</p>
-        <a href="pages/pts/index.html" class="btn">Buka PTS <i class="fas fa-arrow-right"></i></a>
+        <h3>PTS Scores</h3><p>Nilai Penilaian Tengah Semester</p>
+        <a href="pages/pts/index.html" class="btn">View PTS <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/remedial-pts/index.html" tabindex="0" role="link" aria-label="Buka Remedial PTS">
+      <div class="card" data-link="pages/remedial-pts/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-redo"></i></div>
-        <h3>Remedial PTS</h3>
-        <p>Perbaikan nilai tengah semester</p>
-        <a href="pages/remedial-pts/index.html" class="btn">Buka Remedial <i class="fas fa-arrow-right"></i></a>
+        <h3>Remedial PTS</h3><p>Perbaikan nilai tengah semester</p>
+        <a href="pages/remedial-pts/index.html" class="btn">View Remedial <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/uas/index.html" tabindex="0" role="link" aria-label="Buka UAS Scores">
+      <div class="card" data-link="pages/uas/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-file-alt"></i></div>
-        <h3>UAS Scores</h3>
-        <p>Nilai Ujian Akhir Semester</p>
-        <a href="pages/uas/index.html" class="btn">Buka UAS <i class="fas fa-arrow-right"></i></a>
+        <h3>UAS Scores</h3><p>Nilai Ujian Akhir Semester</p>
+        <a href="pages/uas/index.html" class="btn">View UAS <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/remedial-uas/index.html" tabindex="0" role="link" aria-label="Buka Remedial UAS">
+      <div class="card" data-link="pages/remedial-uas/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-sync-alt"></i></div>
-        <h3>Remedial UAS</h3>
-        <p>Perbaikan nilai akhir semester</p>
-        <a href="pages/remedial-uas/index.html" class="btn">Buka Remedial <i class="fas fa-arrow-right"></i></a>
+        <h3>Remedial UAS</h3><p>Perbaikan nilai akhir semester</p>
+        <a href="pages/remedial-uas/index.html" class="btn">View Remedial <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/knowledge/index.html" tabindex="0" role="link" aria-label="Buka Knowledge">
+      <div class="card" data-link="pages/knowledge/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-brain"></i></div>
-        <h3>Knowledge</h3>
-        <p>Penilaian pemahaman materi</p>
-        <a href="pages/knowledge/index.html" class="btn">Buka Knowledge <i class="fas fa-arrow-right"></i></a>
+        <h3>Knowledge</h3><p>Penilaian pemahaman materi</p>
+        <a href="pages/knowledge/index.html" class="btn">View Knowledge <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/skills/index.html" tabindex="0" role="link" aria-label="Buka Skills">
+      <div class="card" data-link="pages/skills/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-hands-helping"></i></div>
-        <h3>Skills</h3>
-        <p>Keterampilan berbahasa Inggris</p>
-        <a href="pages/skills/index.html" class="btn">Buka Skills <i class="fas fa-arrow-right"></i></a>
+        <h3>Skills</h3><p>Keterampilan berbahasa Inggris</p>
+        <a href="pages/skills/index.html" class="btn">View Skills <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/attitude/index.html" tabindex="0" role="link" aria-label="Buka Attitude">
+      <div class="card" data-link="pages/attitude/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-heart"></i></div>
-        <h3>Attitude</h3>
-        <p>Sikap spiritual & sosial</p>
-        <a href="pages/attitude/index.html" class="btn">Buka Attitude <i class="fas fa-arrow-right"></i></a>
+        <h3>Attitude</h3><p>Sikap spiritual & sosial</p>
+        <a href="pages/attitude/index.html" class="btn">View Attitude <i class="fas fa-arrow-right"></i></a>
       </div>
-
-      <div class="card" data-link="pages/progress/index.html" tabindex="0" role="link" aria-label="Buka Class Progress">
+      <div class="card" data-link="pages/progress/index.html" tabindex="0" role="link">
         <div class="icon"><i class="fas fa-chart-line"></i></div>
-        <h3>Class Progress</h3>
-        <p>Rangkuman progres kelas</p>
-        <a href="pages/progress/index.html" class="btn">Buka Progress <i class="fas fa-arrow-right"></i></a>
+        <h3>Class Progress</h3><p>Rangkuman progres kelas</p>
+        <a href="pages/progress/index.html" class="btn">View Progress <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </main>
@@ -278,27 +153,19 @@
     <p>© 2025 <strong>ESS - English Scores System</strong></p>
     <p>Designed by <a href="https://wa.me/+6282246077307" target="_blank" rel="noopener">Ahmad Zaman Huri, S.Pd.</a></p>
     <p>Dedicated to <a href="https://www.instagram.com/mtst_daaruttahfizh" target="_blank" rel="noopener">MTsT Daarut Tahfizh Al-Ikhlas</a></p>
+    <small>ESS v1.0 • Simplicity • Clarity • Transparency</small>
   </footer>
 
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/6282246077307" class="wa-btn" target="_blank" aria-label="Hubungi pengembang ESS di WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script>
-    // Jadikan seluruh kartu bisa diklik ke link tombol di dalamnya (tanpa ubah tampilan)
-    document.querySelectorAll('.card').forEach(card => {
-      const href = card.dataset.link;
-      if (!href) return;
-
-      card.addEventListener('click', (e) => {
-        // Hindari double navigasi kalau klik tombol
-        const isButton = e.target.closest('.btn');
-        if (isButton) return;
-        window.location.href = href;
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          window.location.href = href;
-        }
-      });
+    document.querySelectorAll('.card').forEach(card=>{
+      const href=card.dataset.link;if(!href)return;
+      card.addEventListener('click',e=>{if(e.target.closest('.btn'))return;window.location.href=href});
+      card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.location.href=href}});
     });
   </script>
 </body>
