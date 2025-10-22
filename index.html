@@ -38,7 +38,7 @@
       min-height:100vh;
     }
 
-    /* Header */
+    /* Header (tetap) */
     .header{
       background:var(--primary);
       color:var(--white);
@@ -53,7 +53,6 @@
       font-size:2rem;
       color:var(--accent-gold);
     }
-    /* Shimmer hanya untuk ikon di header */
     @media (prefers-reduced-motion: no-preference){
       .logo i{
         background:linear-gradient(45deg, transparent, var(--gold-light), transparent);
@@ -73,50 +72,65 @@
     .subtitle{font-weight:500;opacity:.95;font-size:1.05rem}
     .school{font-size:.875rem;opacity:.85;margin-top:.2rem}
 
-    /* Main */
+    /* Main (dilebarkan agar selaras halaman lain) */
     .main{
-      max-width:1200px;margin:0 auto;padding:2.25rem 1rem;
+      max-width:1400px; /* dari 1200 -> 1400 untuk match pages lain */
+      margin:0 auto;
+      padding:2.25rem 1rem;
       background:linear-gradient(to bottom,var(--light),#e8f0e8);
     }
     .hero{text-align:center;margin-bottom:2rem}
-    .hero h2{font-size:1.6rem;color:var(--primary);font-weight:600;margin-bottom:.35rem}
-    .hero p{color:#475569;max-width:620px;margin:0 auto;font-size:1rem}
-
-    /* Grid */
-    .grid{
-      display:grid;gap:1.25rem;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    .hero h2{
+      font-size:clamp(1.35rem, 2.2vw, 1.6rem);
+      color:var(--primary);font-weight:600;margin-bottom:.35rem
     }
+    .hero p{color:#475569;max-width:720px;margin:0 auto;font-size:1rem}
+
+    /* Grid (lebih stabil di laptop kecil & rapi di desktop besar) */
+    .grid{
+      display:grid;
+      gap:clamp(.9rem, 1.8vw, 1.25rem); /* responsif */
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); /* dari 260 -> 300 */
+    }
+
     .card{
       position:relative;
       background:var(--white);
       border-radius:var(--radius);
-      padding:1.5rem;
+      padding:1.25rem; /* dari 1.5 -> 1.25, lebih kompak */
       text-align:center;
       box-shadow:var(--shadow);
       border:1px solid rgba(35,70,38,.08);
       transition:transform .15s var(--ease), box-shadow .15s var(--ease);
+      cursor:pointer; /* seluruh kartu klik */
     }
-    .card:focus-within{outline:2px solid var(--accent-gold);outline-offset:2px}
+    .card:focus-within,
+    .card:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px}
     @media (hover:hover){
       .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
     }
+
     .icon{
-      width:66px;height:66px;margin:0 auto 1rem;
+      width:60px;height:60px; /* dari 66 -> 60 agar proporsional dg padding baru */
+      margin:0 auto 1rem;
       display:flex;align-items:center;justify-content:center;
       border-radius:1rem;
       background:linear-gradient(135deg,var(--primary),var(--primary-light));
-      color:#fff;font-size:1.6rem;
+      color:#fff;font-size:1.45rem;
       box-shadow:0 6px 15px rgba(35,70,38,.18);
+      flex-shrink:0;
     }
 
-    .card h3{font-size:1.15rem;color:var(--primary);margin-bottom:.45rem;font-weight:600}
-    .card p{font-size:.9rem;color:#64748B;margin-bottom:1rem}
+    .card h3{
+      font-size:clamp(1.05rem, 1.6vw, 1.2rem); /* tipografi responsif */
+      color:var(--primary);margin-bottom:.45rem;font-weight:600
+    }
+    .card p{font-size:.92rem;color:#64748B;margin-bottom:1rem}
 
     .btn{
       display:inline-flex;align-items:center;gap:.55rem;
       background:linear-gradient(45deg,var(--primary),var(--primary-light));
-      color:#fff;padding:.7rem 1.2rem;border-radius:.6rem;
+      color:#fff;padding:.7rem 1.15rem;border-radius:.6rem;
       font-size:.9rem;font-weight:600;text-decoration:none;
       border:1px solid var(--accent-gold);
       transition:transform .12s var(--ease), box-shadow .12s var(--ease), background .12s var(--ease), color .12s var(--ease);
@@ -128,10 +142,12 @@
         color:var(--accent-gold);
         box-shadow:0 4px 10px rgba(212,175,55,.22);
         transform:translateY(-1px);
+        text-shadow:0 0 1px rgba(0,0,0,.2); /* jaga kontras saat teks gold */
       }
       .btn:hover i{transform:translateX(2px)}
     }
     .btn i{font-size:.9rem;transition:transform .12s var(--ease)}
+    .btn:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px}
     .btn:active{transform:translateY(0)}
 
     .card::before{
@@ -142,7 +158,7 @@
       pointer-events:none;
     }
 
-    /* Footer Minimalis */
+    /* Footer (tetap) */
     .footer{
       text-align:center;
       padding:1.25rem 1rem;
@@ -166,8 +182,7 @@
     @media (max-width:768px){
       .header{padding:1.6rem 1rem}
       .logo h1{font-size:1.6rem}
-      .hero h2{font-size:1.35rem}
-      .card{padding:1.25rem}
+      .card{padding:1rem} /* lebih ringkas di mobile */
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -200,56 +215,56 @@
     </section>
 
     <div class="grid">
-      <div class="card">
+      <div class="card" data-link="pages/pts/index.html" tabindex="0" role="link" aria-label="Buka PTS Scores">
         <div class="icon"><i class="fas fa-clipboard-check"></i></div>
         <h3>PTS Scores</h3>
         <p>Nilai Penilaian Tengah Semester</p>
         <a href="pages/pts/index.html" class="btn">Buka PTS <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/remedial-pts/index.html" tabindex="0" role="link" aria-label="Buka Remedial PTS">
         <div class="icon"><i class="fas fa-redo"></i></div>
         <h3>Remedial PTS</h3>
         <p>Perbaikan nilai tengah semester</p>
         <a href="pages/remedial-pts/index.html" class="btn">Buka Remedial <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/uas/index.html" tabindex="0" role="link" aria-label="Buka UAS Scores">
         <div class="icon"><i class="fas fa-file-alt"></i></div>
         <h3>UAS Scores</h3>
         <p>Nilai Ujian Akhir Semester</p>
         <a href="pages/uas/index.html" class="btn">Buka UAS <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/remedial-uas/index.html" tabindex="0" role="link" aria-label="Buka Remedial UAS">
         <div class="icon"><i class="fas fa-sync-alt"></i></div>
         <h3>Remedial UAS</h3>
         <p>Perbaikan nilai akhir semester</p>
         <a href="pages/remedial-uas/index.html" class="btn">Buka Remedial <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/knowledge/index.html" tabindex="0" role="link" aria-label="Buka Knowledge">
         <div class="icon"><i class="fas fa-brain"></i></div>
         <h3>Knowledge</h3>
         <p>Penilaian pemahaman materi</p>
         <a href="pages/knowledge/index.html" class="btn">Buka Knowledge <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/skills/index.html" tabindex="0" role="link" aria-label="Buka Skills">
         <div class="icon"><i class="fas fa-hands-helping"></i></div>
         <h3>Skills</h3>
         <p>Keterampilan berbahasa Inggris</p>
         <a href="pages/skills/index.html" class="btn">Buka Skills <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/attitude/index.html" tabindex="0" role="link" aria-label="Buka Attitude">
         <div class="icon"><i class="fas fa-heart"></i></div>
         <h3>Attitude</h3>
         <p>Sikap spiritual & sosial</p>
         <a href="pages/attitude/index.html" class="btn">Buka Attitude <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="card">
+      <div class="card" data-link="pages/progress/index.html" tabindex="0" role="link" aria-label="Buka Class Progress">
         <div class="icon"><i class="fas fa-chart-line"></i></div>
         <h3>Class Progress</h3>
         <p>Rangkuman progres kelas</p>
@@ -258,11 +273,33 @@
     </div>
   </main>
 
-  <!-- Footer Minimalis -->
+  <!-- Footer -->
   <footer class="footer">
     <p>© 2025 <strong>ESS - English Scores System</strong></p>
     <p>Designed by <a href="https://wa.me/+6282246077307" target="_blank" rel="noopener">Ahmad Zaman Huri, S.Pd.</a></p>
     <p>Dedicated to <a href="https://www.instagram.com/mtst_daaruttahfizh" target="_blank" rel="noopener">MTsT Daarut Tahfizh Al-Ikhlas</a></p>
   </footer>
+
+  <script>
+    // Jadikan seluruh kartu bisa diklik ke link tombol di dalamnya (tanpa ubah tampilan)
+    document.querySelectorAll('.card').forEach(card => {
+      const href = card.dataset.link;
+      if (!href) return;
+
+      card.addEventListener('click', (e) => {
+        // Hindari double navigasi kalau klik tombol
+        const isButton = e.target.closest('.btn');
+        if (isButton) return;
+        window.location.href = href;
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
